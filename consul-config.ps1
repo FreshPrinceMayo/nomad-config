@@ -4,8 +4,8 @@ param (
     [string]$TokenDefault          # Value for tokens.default
 )
 
-# Hardcoded path to the Nomad configuration file
-$ConfigFilePath = "C:\\ProgramData\\nomad\\conf\\client.hcl"
+# Hardcoded path to the Consul configuration file
+$ConfigFilePath = "C:\\ProgramData\\consul\\config\\consul.hcl"
 
 # Read the content of the configuration file
 $configContent = Get-Content -Path $ConfigFilePath -Raw
@@ -18,7 +18,7 @@ $configContent = $configContent -replace "<TOKEN_DEFAULT>", $TokenDefault
 # Write the updated content back to the configuration file
 Set-Content -Path $ConfigFilePath -Value $configContent
 
-Write-Output "Nomad configuration file updated successfully."
+Write-Output "Consul configuration file updated successfully."
 
 # Start the Consul service
 Write-Output "Starting the Consul service..."
