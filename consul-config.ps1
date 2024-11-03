@@ -12,7 +12,7 @@ $configContent = Get-Content -Path $ConfigFilePath -Raw
 
 # Replace placeholders with the provided values
 $configContent = $configContent -replace "<ADVERTISE_ADDR>", $AdvertiseAddr
-$configContent = $configContent -replace "<RETRY_JOIN>", "`"$RetryJoin`""  # Add quotes around retry_join
+$configContent = $configContent -replace "<RETRY_JOIN>", $RetryJoin
 $configContent = $configContent -replace "<TOKEN_DEFAULT>", $TokenDefault
 
 # Write the updated content back to the configuration file
