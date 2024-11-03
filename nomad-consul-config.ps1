@@ -4,6 +4,21 @@ param (
     [string]$TokenDefault          # Value for token.default
 )
 
+# Check and stop the Nomad service if it is running
+try {
+    $nomadService = Get-Service -Name "nomad"
+    
+    if ($nomadService.Status -eq 'Running') {
+        Write-Output "Stopping the Nomad service..."
+        Stop-Service -Name "nomad" -Force
+        Write-Output "Nomad service stopped successfully."
+    } else {
+        Write-Output "Nomad service is not running."
+    }
+} catch {
+    Write-Error "Error while checking or stopping the Nomad service: $_"
+}
+
 # Path to the Consul configuration file
 $ConsulConfigFilePath = "C:\\ProgramData\\consul\\config\\consul.hcl"
 
